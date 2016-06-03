@@ -1,0 +1,12 @@
+{application, liberl,
+ [
+  {description, "Erlang missing library"},
+  {vsn, "0.0.1"},
+  {applications,[
+                 kernel,
+                 stdlib
+                ]},
+  {mod, {liberl_app, []}},
+  {env, [
+        ]}
+ ]}.
