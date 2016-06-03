@@ -1,12 +1,12 @@
 -module(s).
 -export([b64/1]).
--export([g_v/2, g_vs/2]).
+-export([gv/2, gvs/2]).
 
 
-g_v(K, L)->
+gv(K, L)->
         proplists:get_value(K,L).
 
-g_vs(K,L)->
+gvs(K,L)->
         binary_to_list(proplists:get_value(K, L)).
 
 b64(F)->
