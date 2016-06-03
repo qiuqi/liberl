@@ -47,4 +47,4 @@ doc:
 	$(REBAR) get-deps compile doc
 
 dialyzer:
-	$(REBAR) skip_deps=true dialyze
+	$(REBAR) skip_deps=true dialyzer

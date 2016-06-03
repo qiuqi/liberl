@@ -4,10 +4,14 @@
 -export([iso_8601_fmt/1, format_iso8601/0, format_iso8601_local/0]).
 
 
+%% @doc 获得当前系统时间的LONG值
+-spec longtime_int()->integer().
 longtime_int()->
         {M, S, I} = erlang:timestamp(),
         trunc(M * 1000000000 + S * 1000 + I / 1000).
 
+%% @doc 获得当前系统时间的LONG值
+-spec longtime()->string().
 longtime()->
         integer_to_list(longtime_int()).
 
