@@ -21,6 +21,8 @@ iso_8601_fmt(DateTime) ->
 format_iso8601_local()->
         iso_8601_fmt(calendar:local_time()).
 
+%% @doc 获得UTC时间的iso8601格式串
+-spec format_iso8601()->binary().
 format_iso8601() ->
         {{Year, Month, Day}, {Hour, Min, Sec}} = calendar:universal_time(),
         iolist_to_binary(
