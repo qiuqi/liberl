@@ -1,7 +1,7 @@
 {application, liberl,
  [{description, "Erlang missing library"},
   {vsn, "0.0.1"},
-  {modules, [missing_hex, missing_jq, missing_json, missing_time, s]},
+  {modules, [qqhex, qqjq, qqjson, qqtime, s]},
   {applications,[stdlib]},
   {registered, []},
   {env, []}]}.
