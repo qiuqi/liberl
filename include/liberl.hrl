@@ -20,8 +20,8 @@
 
 -define(HTTP_LINE(F, LINE), h:http_show_s(F, LINE)).
 
--define(HTOB(F), hex:hexstr_to_bin(F)).
--define(BTOH(F), hex:bin_to_hexstr(F)).
+-define(HTOB(F), missing_hex:hexstr_to_bin(F)).
+-define(BTOH(F), missing_hex:bin_to_hexstr(F)).
 -define(CHECK(F, R), ancode_utils:checkError(F, Reason)).
 
 -endif.
