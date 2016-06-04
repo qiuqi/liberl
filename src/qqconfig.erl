@@ -1,4 +1,5 @@
 -module(qqconfig).
+-export([init/0]).
 -export([read/0, read/1]).
 -export([getItem/1, getItem/2]).
 
@@ -16,18 +17,16 @@ filename(Filename)->
         {ok, RootDir} = file:get_cwd(),
         RootDir++Filename.
 
-read()->
-        read(?CONFIG).
-
 read(Filename)->
         {ok, ConfigData} = file:read_file(filename(Filename)),
-        ?B([read, ?JSON_DECODE(ConfigData)]),
         ?JSON_DECODE(ConfigData).
 
-read1(Filename)->
-        {ok, ConfigData} = file:read_file(filename(Filename)),
-        ConfigData.
+init()->
+        Json = "{\"key1\":\"value1\", \"key2\":\"value2\"}",
+        file:write_file(filename(?CONFIG), Json).
 
+read()->
+        read(?CONFIG).
 
 %% @doc 获取指定配置文件的值
 -spec getItem(string(), list())->string().
@@ -48,6 +47,12 @@ getItem(Key)->
 -ifdef(TEST).
 -include_lib("eunit/include/eunit.hrl").
 -define(D(F), ?debugFmt("~n~p:~p ~p", [?MODULE, ?LINE, F])).
+%% 暂时屏蔽这个测试用例，因为无法eunit的时候缺省目录不对
+%%init_test()->
+%%        init(),
+%%        read(),
+%%        getItem([<<"key1">>]).
+
 generate_test()->
         Json = "{\"key1\":\"value1\", \"key2\":\"value2\"}",
         ?D(Json),
