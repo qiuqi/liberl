@@ -39,6 +39,8 @@ clean:
 	$(REBAR) clean
 
 eunit:
+	@rm -rf .eunit
+	@mkdir -p .eunit
 	$(REBAR) eunit
 
 test: eunit
