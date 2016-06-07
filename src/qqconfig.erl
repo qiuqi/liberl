@@ -29,13 +29,13 @@ read()->
         read(?CONFIG).
 
 %% @doc 获取指定配置文件的值
--spec getItem(string(), list())->string().
+-spec getItem(string(), list())->binary().
 getItem(Filename, Key)->
         qqjq:getItem(qqconfig:read(Filename), Key).
 
 
 %% @doc 获取配置文件的值
--spec getItem(list())->string().
+-spec getItem(list())->binary().
 getItem(Key)->
         qqjq:getItem(qqconfig:read(), Key).
 
