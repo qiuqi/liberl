@@ -1,1 +1,9 @@
-# liberl
+liberl
+=====
+
+An OTP library
+
+Build
+-----
+
+    $ rebar3 compile

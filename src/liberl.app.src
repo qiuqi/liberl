@@ -1,7 +1,15 @@
-{application, liberl,
- [{description, "Erlang missing library"},
-  {vsn, "0.0.1"},
-  {modules, [qqhex, qqjq, qqjson, qqtime, s]},
-  {applications,[stdlib]},
+{application, 'liberl',
+ [{description, "An OTP library"},
+  {vsn, "0.1.0"},
   {registered, []},
-  {env, []}]}.
+  {applications,
+   [kernel,
+    stdlib
+   ]},
+  {env,[]},
+  {modules, [qqhex, qqjq, qqjson, qqtime, s]},
+
+  {maintainers, []},
+  {licenses, []},
+  {links, []}
+ ]}.
