@@ -7,7 +7,7 @@
     stdlib
    ]},
   {env,[]},
-  {modules, [qqhex, qqjq, qqjson, qqtime, s]},
+  {modules, [qqhex, qqjq, qqjson, qqtime, db, s]},
 
   {maintainers, []},
   {licenses, []},
