@@ -21,8 +21,8 @@
 -define(HTTP_JSON(F, Msg), j:json(F, Msg)).
 -define(HTTP_LINE(F, LINE), h:http_show_s(F, LINE)).
 
--define(HTOB(F), missing_hex:hexstr_to_bin(F)).
--define(BTOH(F), missing_hex:bin_to_hexstr(F)).
+-define(HTOB(F), qqhex:hexstr_to_bin(F)).
+-define(BTOH(F), qqhex:bin_to_hexstr(F)).
 -define(CHECK(F, R), ancode_utils:checkError(F, Reason)).
 -define(B64(F), base64:encode(F)).
 -define(BIN(F), ancode_utils:bin(F)).
