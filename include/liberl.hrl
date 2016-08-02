@@ -6,7 +6,6 @@
 
 -define(GETVALUE(K, L), proplists:get_value(K, L)).
 -define(GETVALUES(K, L), binary_to_list(proplists:get_value(K, L))).
--define(B64(F), base64:encode(F)).
 
 -define(HTTP_OK(F), j:json(F, j:jsonOk())).
 -define(HTTP_FAILED(F), j:json(F, j:jsonFailed())).
