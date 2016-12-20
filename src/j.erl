@@ -4,7 +4,7 @@
 -export([jsonOk/1]).
 -export([jsonOkTime/2]).
 -export([jsonFailed/1]).
--export([keepalive/3]).
+-export([keepalive/1]).
 -export([http_show_json/2]).
 -export([http_show_json_s/2]).
 -export([http_show_xml_s/2]).
@@ -18,11 +18,8 @@ http_show(failed, Req, Show, Opts)->
 http_show(skey, Req, Skey, Opts)->
 	http_show(all, Req, lists:flatten(["<skey>",Skey,"</skey>"]), Opts).
 
-
-
-keepalive(Req, Mixun, Pid)->
-	?B(["k", Mixun, Pid]),
-	http_show_xml_s(Req, ["k"]).
+keepalive(Req)->
+    http_show_json_s(Req, [{"k", ?U(qqtime:longtime())}]).
 
 http_show_xml(Req, Xml)->
     	http_resp:ok(Req, lists:flatten(Xml)).
