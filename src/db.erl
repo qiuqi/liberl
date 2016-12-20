@@ -6,7 +6,7 @@
 	hvals/2,incr/2,info/1,lindex/3,llen/2,
 	lpop/2,lrange/2, lrange/4, lrem/4,rpush/3,sadd/3,save/1,scard/2,
 	set/3,setex/4,sismember/3,smembers/2,spop/2,srem/3,ttl/2]).
--export([zadd/4, zcard/2, zincrby/4, zrange/4, zrange_all/4, zrem/3, zscore/3]).
+-export([zadd/4, zcard/2, zcount/4, zincrby/4, zrange/4, zrange_by_score/4, zrange_all/4, zrem/3, zscore/3]).
 
 %%-spec del(Db::atom(), Key::string()) ->
 %%	{ok,binary} | {error, Reason::binary()}.
@@ -232,6 +232,14 @@ zcard(Db, Key)->
 			0
 	end.
 
+zcount(Db, Key, Min, Max)->
+    case eredis_pool:q(Db, ["ZCOUNT", Key, Min, Max]) of
+        {ok, Length} ->
+            list_to_integer(binary_to_list(Length));
+        _ ->
+            0
+    end.
+
 zincrby(Db, Key, Score, Member)->
 	case eredis_pool:q(Db, ["ZINCRBY", Key, Score, Member])	of
 		{ok, _} -> ok;
@@ -244,6 +252,13 @@ zrange(Db, Key, Start, Stop) ->
 			Members;
 		_ -> failed
 	end.
+
+zrange_by_score(Db, Key, Start, Stop) ->
+    case eredis_pool:q(Db, ["ZRANGEBYSCORE", Key, Start, Stop]) of
+        {ok, Members} ->
+            Members;
+        _ -> []
+    end.
 
 zrange_all(Db, Key, Start, Stop) ->
 	case eredis_pool:q(Db, ["ZRANGE", Key, Start, Stop, "WITHSCORES"]) of
