@@ -10,6 +10,11 @@
 -export([http_show_xml_s/2]).
 -export([http_show_xml/2]).
 -export([http_show/4]).
+-export([recv/1]).
+
+recv(Req) ->
+    {ok, Data, _Req2} = ?BODY(Req),
+    ?JSON_DECODE(Data).
 
 http_show(all, Req, Show, Opts)->
 	http_resp:ok(Req, io_lib:format("<b>~s</b>",[Show]), Opts);
@@ -34,7 +39,7 @@ http_show_json_s(Req, Json)->
     cowboy_req:stream_body(All++"\r\n", nofin, Req).
 
 http_show_json(Req, Msg)->
-    json(Req, Msg).
+    json(Req, [{"time", ?U(qqtime:longtime())}|Msg]).
 
 json(Req, JsonString)->
     Json = mochijson2:encode(JsonString),
