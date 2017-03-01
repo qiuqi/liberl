@@ -2,6 +2,13 @@
 -export([longtime_int/0]).
 -export([longtime/0]).
 -export([iso_8601_fmt/1, format_iso8601/0, format_iso8601_local/0]).
+-export([unixts/0]).
+
+%% @doc 获取当前系统时间的Unix时间
+-spec unixts()->integer().
+unixts()->
+    {M, S, _I} = erlang:timestamp(),
+    trunc(M*1000000+S).
 
 
 %% @doc 获得当前系统时间的LONG值
