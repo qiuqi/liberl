@@ -1,12 +1,22 @@
 -module(db).
 
 %%API
--export([del/2, exists/2, expire/3,get/2,hdel/3,
+-export([decr/2, del/2, exists/2, expire/3,get/2,hdel/3,
 	hexists/3,hget/3,hgetall/2,hkeys/2, hlen/2, hset/4,
 	hvals/2,incr/2,info/1,lindex/3,llen/2,
 	lpop/2,lrange/2, lrange/4, lrem/4,rpush/3,sadd/3,save/1,scard/2,
 	set/3,setex/4,sismember/3,smembers/2,spop/2,srem/3,ttl/2]).
 -export([zadd/4, zcard/2, zcount/4, zincrby/4, zrange/4, zrange_by_score/4, zrange_all/4, zrem/3, zscore/3]).
+
+%%-spec decr(DB::atom(), Key::string())->
+%% {ok, integer} | 0
+decr(Db, Key)->
+	case eredis_pool:q(Db, ["DECR", Key]) of
+		{ok, Number}->
+			list_to_integer(binary_to_list(Number));
+		_ ->
+			0
+	end.
 
 %%-spec del(Db::atom(), Key::string()) ->
 %%	{ok,binary} | {error, Reason::binary()}.
